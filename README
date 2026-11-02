@@ -1,0 +1,35 @@
+Othello README
+
+OVERVIEW:
+This program allows two players to compete on an 8×8 board, where each player can be
+either human or computer-controlled with selectable difficulty levels. The game is
+is structured around 12 main classes.
+    The SetupGame class initializes the game, creates the board and referee, and
+manages player setup and game resets. The Board class represents the game board and contains
+OthelloSquare objects for each cell, handling piece placement, move validation, and flipping
+captured pieces. Each OthelloSquare knows its position, whether it contains a piece, and
+handles mouse clicks by notifying the Referee, while the OthelloPiece class represents
+individual game pieces, storing their color, position, and JavaFX graphical representation.
+Players implement the Player interface, with HumanPlayer responding to user clicks and
+ComputerPlayer performing automated moves. The Referee class enforces the game rules,
+manages turns, validates moves, updates scores, highlights valid squares for human players,
+and determines the winner when the game ends. The GUI is handled by the PaneOrganizer class
+and Controls (controlsPane), which provide menus for selecting player types, buttons for
+applying settings, resetting the game, and quitting, while arranging the board and controls
+within a JavaFX layout.
+
+DESIGN CHOICES:
+1. Using a 2D OthelloSquare[][] array containing Rectangles, unlike in Tetris where the array is
+empty and can track occupied cells. Therefore, each square can be highlighted (change color),
+and the piece can be added into it.
+
+2. activate(Board board) and placePiece(int row, int col):
+    The activate method is called by the current player. If the current player is human,
+then nothing happens until the valid square is clicked; therefore, triggers the placePiece
+method which calls switchTurn().
+    If the current player is the computer, activate will get row and column from getBestMove()
+and place the piece in that position. Similarly. in placePiece(...), switchTurn() is called.
+
+KNOWN BUGS: -
+
+HOURS SPENT: 50
